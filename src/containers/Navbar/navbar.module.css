@@ -1,0 +1,27 @@
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	width: 100vw;
+	height: var(--navbar-height);
+	background: var(--secondary-color);
+	padding: var(--spacing);
+}
+
+.navbar nav {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.navbar ul {
+	display: flex;
+	list-style: none;
+}
+
+.navbar li {
+	margin-inline: 10px;
+}
+
+.navbar li:first-child {
+	margin-left: 0;
+}
