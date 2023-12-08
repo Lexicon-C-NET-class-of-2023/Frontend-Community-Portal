@@ -1,10 +1,37 @@
-body {
+:root {
+  --primary-color: #FF6F00;
+  --secondary-color: #212121;
+  --complimentary-color: yellow;
+  --main-height: 100dvh;
+  --spacing: 16px;
+}
+
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu";
+}
+
+::selection {
+  color: var(--secondary-color);
+  background: var(--primary-color);
+}
+
+body {
+  padding: var(--spacing);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing);
+  min-height: var(--main-height);
 }
 
 code {
