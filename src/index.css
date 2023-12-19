@@ -4,6 +4,7 @@
   --complimentary-color: yellow;
   --main-height: 100dvh;
   --spacing: 16px;
+  --border-radius: 8px;
 }
 
 * {
