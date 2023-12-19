@@ -1,3 +1,8 @@
+const customError = {
+	404: "Have you entered the right path?",
+	"NetworkError when attempting to fetch resource.": 'Have you started your API?'
+}
+
 export const Fetch = async (
 	path,
 	component,
@@ -11,7 +16,7 @@ export const Fetch = async (
 	const url = "http://127.0.0.1:5263/"
 	const controller = new AbortController();
 	const signal = controller.signal;
-	
+
 	return fetch(`${url}${path}`,
 		{
 			signal,
@@ -21,6 +26,7 @@ export const Fetch = async (
 		})
 		.then((res) => {
 			if (!res.ok) {
+				console.error(customError[res.status]);
 				return {
 					error: {
 						url: res.url,
@@ -33,6 +39,10 @@ export const Fetch = async (
 			}
 			else return res.json()
 		})
-		.catch(error => error)
+		.catch(error => {
+			if (error.message === 'NetworkError when attempting to fetch resource.') {
+				console.error(customError[error.message]);
+			} else return error;
+		})
 		.finally(() => controller.abort())
 }

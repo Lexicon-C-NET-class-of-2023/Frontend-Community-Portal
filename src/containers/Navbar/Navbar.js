@@ -18,6 +18,16 @@ export default function Navbar() {
 							Home
 						</NavLink>
 					</li>
+					<li>
+						<NavLink
+							to='messages'
+							style={({ isActive }) => ({
+								color: isActive ? 'white' : '#485F73',
+								textDecoration: 'none'
+							})}>
+							Messages
+						</NavLink>
+					</li>
 				</ul>
 			</nav>
 		</div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react' /* <= imports, (React & react hooks) */
-import styles from './homepage.module.css'
+import { Error } from '../../components/Input/Error/Error'
 import { Fetch } from '../../services/fetch'
+import styles from './homepage.module.css'
 
 
 export default function HomePage() {
@@ -14,7 +15,7 @@ export default function HomePage() {
 	const getUsers = () => {
 		Fetch('users')
 			.then(res => {
-				if (res.error) setError(res.error);
+				if (res?.error) setError(res.error);
 				else setUsers(res)
 			})
 			.finally('reload')
@@ -26,7 +27,7 @@ export default function HomePage() {
 		<div className={styles.homepage}>
 			<h1>Welcome</h1>
 
-			{error && <p>{error.message} {error.statusText}</p>}  {/* <= conditional rendering (only shows if "error" is defined) */}
+			{error && <Error error={error} />} {/* <= conditional rendering (only shows if "error" is defined) */}
 
 			{users &&
 				<div>
