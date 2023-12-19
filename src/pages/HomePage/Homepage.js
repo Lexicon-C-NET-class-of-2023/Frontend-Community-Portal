@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react' /* <= imports, (React & react hooks) */
-import { Error } from '../../components/Input/Error/Error'
+import { Error } from '../../components/Error/Error'
 import { Fetch } from '../../services/fetch'
 import styles from './homepage.module.css'
 
