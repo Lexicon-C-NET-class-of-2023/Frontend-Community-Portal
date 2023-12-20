@@ -40,6 +40,8 @@ export default function MessagesPage() {
 			{messages &&
 				<div>
 					{messages.map((message) => {
+
+
 						return (
 							<div
 								key={message.id}

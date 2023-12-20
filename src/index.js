@@ -10,7 +10,7 @@ import Protected from './containers/Protected/Protected';
 import HomePage from './pages/HomePage/Homepage';
 import { NoMatchPage } from './pages/NoMatchPage/NoMatchPage';
 import MessagesPage from './pages/MessagesPage/MessagesPage';
-
+import Temp from './components/Temp/Temp';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "messages",
         element: <MessagesPage />
+      },
+      {
+        path: "temp",
+        element: <Temp />
       },
       {
         path: "*",

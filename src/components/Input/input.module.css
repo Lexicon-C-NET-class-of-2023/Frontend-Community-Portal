@@ -1,0 +1,24 @@
+.input {
+	position: relative;
+	display: flex;
+	width: 100%;
+	height: calc(var(--spacing)*2.5);
+	gap: var(--spacing);
+	align-items: center;
+	justify-content: space-between;
+}
+
+.input input {
+	height: 100%;
+	padding: 0 calc(var(--spacing)/1.2);
+	border: 1px solid black;
+	border-radius: 4px;
+}
+
+.imagecontainer {
+	position: absolute;
+	right: calc(var(--spacing)/1.5);
+	display: grid;
+	place-items: center;
+	height: 100%;
+}

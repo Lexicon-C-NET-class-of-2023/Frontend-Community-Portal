@@ -1,0 +1,7 @@
+.button {
+	width: fit-content;
+	padding: calc(var(--spacing)/2) var(--spacing);
+	border: 1px solid black;
+	border-radius: 4px;
+	box-shadow: 2px 2px 2px var(--complimentary-color) inset, -3px -3px 1px black inset;
+}

@@ -1,0 +1,6 @@
+.buttoncontainer {
+	justify-content: flex-end;
+	display: flex;
+	gap: var(--spacing);
+	margin-top: var(--spacing);
+}

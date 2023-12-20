@@ -1,0 +1,9 @@
+.form {
+	width: fit-content;
+	display: grid;
+	gap: var(--spacing);
+	padding: var(--spacing);
+	border-radius: 4px;
+	background: var(--primary-color);
+	border: 1px solid black;
+}
