@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react' /* <= imports, (React & react hooks) */
 import { Error } from '../../components/Error/Error'
 import { Fetch } from '../../services/fetch'
+import { UserAuth } from '../../context/AuthContext'
 import styles from './homepage.module.css'
 
 
 export default function HomePage() {
 	const [users, setUsers] = useState() /* <= state (values ment to update the component when changed)*/
 	const [error, setError] = useState()
+	const { user } = UserAuth();
 
 	useEffect(() => {
 		getUsers()
 	}, []) // <= dependency array (only happen once if empty)
+
 
 	const getUsers = () => {
 		Fetch('users')
@@ -25,7 +28,7 @@ export default function HomePage() {
 
 	return (
 		<div className={styles.homepage}>
-			<h1>Welcome</h1>
+			<h1>Welcome {`${user.firstName} ${user.lastName}`}</h1>
 
 			{error && <Error error={error} />} {/* <= conditional rendering (only shows if "error" is defined) */}
 
