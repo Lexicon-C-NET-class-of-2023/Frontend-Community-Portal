@@ -16,7 +16,8 @@ export default function Input({
 	disabled,
 	pattern,
 	autoComplete,
-	passwordsMatch
+	passwordsMatch,
+	inputfieldWidth
 }) {
 	const [showPassword, setShowPassword] = useState(false);
 	const confirmPasswordRef = useRef();
@@ -51,6 +52,7 @@ export default function Input({
 				pattern={pattern}
 				autoComplete={autoComplete ? 'on' : 'off'}
 				ref={name === 'confirmPassword' ? confirmPasswordRef : null} // Only givs confirmPassword a reference
+				style={{ minWidth: inputfieldWidth }}
 			/>
 			{/* Only append icon on password & password confirm */}
 			{(name === 'password' || name === 'confirmPassword') &&
@@ -73,5 +75,6 @@ Input.defaultProps = {
 	required: true,
 	placeholder: 'Placeholder text',
 	minLength: 3,
-	autoComplete: null
+	autoComplete: null,
+	inputfieldWidth: 250
 }

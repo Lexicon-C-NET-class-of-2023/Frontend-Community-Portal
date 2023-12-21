@@ -38,6 +38,16 @@ export default function Navbar() {
 							Temp
 						</NavLink>
 					</li>
+					<li>
+						<NavLink
+							to='login'
+							style={({ isActive }) => ({
+								color: isActive ? 'white' : '#485F73',
+								textDecoration: 'none'
+							})}>
+							Log in
+						</NavLink>
+					</li>
 				</ul>
 			</nav>
 		</div>

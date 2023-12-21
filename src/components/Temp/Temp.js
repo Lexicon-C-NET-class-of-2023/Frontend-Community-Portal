@@ -41,6 +41,7 @@ export default function Temp() {
 	return (
 		<div>
 			<Form
+				title='Temp'
 				handleSubmit={onSubmit}
 				handleReset={onReset}
 			>

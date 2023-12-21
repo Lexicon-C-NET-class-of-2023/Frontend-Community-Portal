@@ -5,7 +5,7 @@ import { ButtonContainer } from '../ButtonContainer/ButtonContainer';
 import { Button } from '../Button/Button';
 
 
-export default function Form({ action, method, encType, children, handleSubmit, handleReset }) {
+export default function Form({ title, action, method, encType, children, handleSubmit, handleReset }) {
 	return (
 		<form
 			className={styles.form}
@@ -15,6 +15,7 @@ export default function Form({ action, method, encType, children, handleSubmit, 
 			onReset={handleReset}
 			onSubmit={handleSubmit}
 		>
+			<h2>{title}</h2>
 			{children}
 
 			<ButtonContainer>
@@ -26,6 +27,7 @@ export default function Form({ action, method, encType, children, handleSubmit, 
 }
 
 Form.propTypes = {
+	title:PropTypes.string.isRequired,
 	handleSubmit: PropTypes.func.isRequired,
 	handleReset: PropTypes.func.isRequired,
 	children: PropTypes.node.isRequired

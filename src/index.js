@@ -4,6 +4,7 @@ import {
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom";
+import { AuthContextProvider } from './context/AuthContext';
 import './index.css';
 import Layout from './pages/Layout';
 import Protected from './containers/Protected/Protected';
@@ -11,6 +12,8 @@ import HomePage from './pages/HomePage/Homepage';
 import { NoMatchPage } from './pages/NoMatchPage/NoMatchPage';
 import MessagesPage from './pages/MessagesPage/MessagesPage';
 import Temp from './components/Temp/Temp';
+import LoginPage from './pages/LoginPage/LoginPage';
+
 
 const router = createBrowserRouter([
   {
@@ -23,7 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: "messages",
-        element: <MessagesPage />
+        element: <Protected><MessagesPage /></Protected>
       },
       {
         path: "temp",
@@ -34,10 +37,16 @@ const router = createBrowserRouter([
         element: <NoMatchPage />
       },
     ]
-  }
+  },
+  {
+    path: "login",
+    element: <LoginPage />
+  },
 ]);
 
 
 createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
+  <AuthContextProvider>
+    <RouterProvider router={router} />
+  </AuthContextProvider>
 );

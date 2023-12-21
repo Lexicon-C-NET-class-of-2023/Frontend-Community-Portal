@@ -1,5 +1,6 @@
 const customError = {
 	404: "Have you entered the right path?",
+	401: "Dina inloggningsuppgifter matchar inte något konto på denna server",
 	"NetworkError when attempting to fetch resource.": 'Have you started your API?'
 }
 
@@ -8,10 +9,7 @@ export const Fetch = async (
 	component,
 	method = 'GET',
 	body,
-	header = {
-		'Content-Type': 'application/json',
-		'Authorization': `Bearer ${'token'}`
-	}
+	header = { 'Content-Type': 'application/json' }
 ) => {
 	const url = "http://127.0.0.1:5263/"
 	const controller = new AbortController();
@@ -22,17 +20,18 @@ export const Fetch = async (
 			signal,
 			method,
 			body: JSON.stringify(body),
-			// headers: header
+			headers: header
 		})
 		.then((res) => {
 			if (!res.ok) {
+				// console.log(res);
 				console.error(customError[res.status]);
 				return {
 					error: {
 						url: res.url,
 						component: component,
 						status: res.status,
-						statusText: res.statusText,
+						statusText: customError[res.status],
 						message: (path, res.status)
 					}
 				}
