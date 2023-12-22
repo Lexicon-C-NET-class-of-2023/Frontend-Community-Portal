@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Fetch } from '../../services/fetch';
 import { Error } from '../../components/Error/Error';
+import { useParams } from 'react-router-dom';
 
 //TODO get all users the current user is chatting with
 //TODO present their name as links with route to conversation
@@ -11,7 +12,7 @@ import { Error } from '../../components/Error/Error';
 export default function MessagesPage() {
 	const [messages, setMessages] = useState() /* <= state (values ment to update the component when changed)*/
 	const [error, setError] = useState()
-	const temporaryId = 1; //TODO should come from url after login
+	const { userId } = useParams();
 
 	useEffect(() => {
 		getUsersMessages()
@@ -19,7 +20,7 @@ export default function MessagesPage() {
 
 
 	const getUsersMessages = () => {	//Where current user is either "userId" or "recipient"
-		Fetch(`messages?userId=${temporaryId}`)
+		Fetch(`messages?userId=${userId}`)
 			.then(res => {
 				if (res?.error) setError(res.error);
 				else setMessages(res)
@@ -40,8 +41,6 @@ export default function MessagesPage() {
 			{messages &&
 				<div>
 					{messages.map((message) => {
-
-
 						return (
 							<div
 								key={message.id}
@@ -51,7 +50,7 @@ export default function MessagesPage() {
 									gap: 'var(--spacing)',
 									marginBottom: '10px',
 									border: '1px solid blue',
-									justifyContent: message.recipient === temporaryId ? 'end' : 'start'
+									justifyContent: message.recipient === parseInt(userId) ? 'end' : 'start'
 								}}
 							>
 								<p>id: {message.id}</p>

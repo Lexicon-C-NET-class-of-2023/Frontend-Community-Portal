@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         element: <Protected><HomePage /></Protected>
       },
       {
-        path: "messages",
+        path: "messages/:userId",
         element: <Protected><MessagesPage /></Protected>
       },
       {

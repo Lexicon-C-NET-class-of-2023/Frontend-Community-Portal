@@ -5,6 +5,7 @@ import { UserAuth } from '../../context/AuthContext';
 
 export default function Protected({ children }) {
 	const auth = UserAuth();
-	if (!auth?.user) return <Navigate to='../login' replace={true} />
+	const session = sessionStorage.getItem("user");
+	if (!session || !auth) return <Navigate to='../login' replace={true} />
 	else return <>{children}</>;
 }

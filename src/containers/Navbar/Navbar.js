@@ -6,6 +6,8 @@ import { UserAuth } from '../../context/AuthContext';
 
 export default function Navbar() {
 	const auth = UserAuth();
+	const userId = auth?.user?.id;
+
 
 	return (
 		<div className={styles.navbar}>
@@ -23,7 +25,7 @@ export default function Navbar() {
 					</li>
 					<li>
 						<NavLink
-							to='messages'
+							to={`messages/${userId}`}
 							style={({ isActive }) => ({
 								color: isActive ? 'white' : '#485F73',
 								textDecoration: 'none'
@@ -39,16 +41,6 @@ export default function Navbar() {
 								textDecoration: 'none'
 							})}>
 							Temp
-						</NavLink>
-					</li>
-					<li>
-						<NavLink
-							to='login'
-							style={({ isActive }) => ({
-								color: isActive ? 'white' : '#485F73',
-								textDecoration: 'none'
-							})}>
-							Log in
 						</NavLink>
 					</li>
 				</ul>

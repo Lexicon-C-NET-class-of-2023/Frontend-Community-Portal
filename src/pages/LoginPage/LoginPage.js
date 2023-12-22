@@ -17,15 +17,15 @@ export default function LoginPage() {
 	const onSubmit = (e) => {
 		e.preventDefault();
 
-		auth.login(value)
+		auth?.login(value)
 	}
 
 
-	if (auth.user) return <Navigate to='/' replace />
+	if (auth?.user) return <Navigate to='/' replace />
 
 	return (
 		<div className={styles.loginpage}>
-			{auth.error && <Error error={auth.error} />}
+			{auth?.error && <Error error={auth.error} />}
 
 			<Form
 				title='Login'
