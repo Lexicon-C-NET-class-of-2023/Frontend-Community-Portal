@@ -4,7 +4,8 @@
 	width: 100vw;
 	height: var(--navbar-height);
 	background: var(--secondary-color);
-	padding: var(--spacing);
+	padding: var(--spacing) calc(var(--spacing)*2) var(--spacing) var(--spacing);
+	justify-content: space-between;
 }
 
 .navbar nav {
@@ -24,4 +25,8 @@
 
 .navbar li:first-child {
 	margin-left: 0;
+}
+
+.navbar p:hover {
+	cursor: pointer;
 }

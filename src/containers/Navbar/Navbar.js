@@ -1,9 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './navbar.module.css';
+import { UserAuth } from '../../context/AuthContext';
 
 
 export default function Navbar() {
+	const auth = UserAuth();
+
 	return (
 		<div className={styles.navbar}>
 			<nav>
@@ -50,6 +53,12 @@ export default function Navbar() {
 					</li>
 				</ul>
 			</nav>
+			<p
+				style={{ color: 'white' }}
+				onClick={() => auth.logout()}
+			>
+				Log out
+			</p>
 		</div>
 	)
 }

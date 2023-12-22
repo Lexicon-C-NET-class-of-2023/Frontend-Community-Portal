@@ -8,7 +8,7 @@ import { Navigate } from 'react-router-dom';
 
 export default function LoginPage() {
 	const [value, setValue] = useState({ email: '', password: '' });
-	const { login,user, error } = UserAuth && UserAuth();
+	const auth = UserAuth();
 
 
 	const onReset = () => setValue({ email: '', password: '' });
@@ -17,15 +17,15 @@ export default function LoginPage() {
 	const onSubmit = (e) => {
 		e.preventDefault();
 
-		login(value)
+		auth.login(value)
 	}
 
 
-	if (user) return <Navigate to='/' replace />
+	if (auth.user) return <Navigate to='/' replace />
 
 	return (
 		<div className={styles.loginpage}>
-			{error && <Error error={error} />}
+			{auth.error && <Error error={auth.error} />}
 
 			<Form
 				title='Login'
