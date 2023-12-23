@@ -13,6 +13,7 @@ import { NoMatchPage } from './pages/NoMatchPage/NoMatchPage';
 import MessagesPage from './pages/MessagesPage/MessagesPage';
 import Temp from './components/Temp/Temp';
 import LoginPage from './pages/LoginPage/LoginPage';
+import PrivateConversation from './components/PrivateConversation/PrivateConversation';
 
 
 const router = createBrowserRouter([
@@ -26,7 +27,13 @@ const router = createBrowserRouter([
       },
       {
         path: "messages/:userId",
-        element: <Protected><MessagesPage /></Protected>
+        element: <Protected><MessagesPage /></Protected>,
+        children: [
+          {
+            path: "message/:messageId",
+            element: <PrivateConversation />
+          },
+        ]
       },
       {
         path: "temp",

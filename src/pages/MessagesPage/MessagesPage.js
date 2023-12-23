@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Fetch } from '../../services/fetch';
 import { Error } from '../../components/Error/Error';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink, Outlet } from 'react-router-dom';
+import styles from './messagespage.module.css'
+
 
 //TODO get all users the current user is chatting with
 //TODO present their name as links with route to conversation
@@ -31,38 +33,55 @@ export default function MessagesPage() {
 
 
 	return (
-		<div>
+		<div className={styles.messagespage}>
 			<h2>Messages</h2>
-			<p>messages where current user is recipient are displayed on the right instead</p>
+			<br />
+			{error && <Error error={error} />}
 			<br />
 
-			{error && <Error error={error} />}
-
 			{messages &&
-				<div>
-					{messages.map((message) => {
-						return (
-							<div
-								key={message.id}
-								style={{
-									display: 'flex',
-									padding: 'var(--spacing)',
-									gap: 'var(--spacing)',
-									marginBottom: '10px',
-									border: '1px solid blue',
-									justifyContent: message.recipient === parseInt(userId) ? 'end' : 'start'
-								}}
-							>
-								<p>id: {message.id}</p>
-								<p>created: {message.created}</p>
-								<p>userId: {message.userId}</p>
-								<p>recipient: {message.recipient}</p>
-								<p>content: {message.content}</p>
-							</div>
-						)
-					})}
+				// <div style={{ display: 'flex' }}>
+
+					<div className={styles.correspondants}>
+						<h3>Correspondants</h3>
+						{messages.map((message) => {
+							return (
+								<NavLink
+									key={message.id}
+									to={`message/${message.id}`}
+									style={({ isActive }) => ({
+										color: isActive ? 'var(--link-active-color)' : 'var(--link-color)'
+									})}>
+									{/* //!TODO ADD NAME FOR USER WITH THIS ID*/}
+									<p>the user with id: {message.recipient === parseInt(userId) ? message.userId : message.recipient}</p>
+								</NavLink>
+							)
+						})}
+					{/* </div> */}
+
+					<Outlet />
+
 				</div>
 			}
 		</div>
 	)
 }
+
+
+{/* <div
+							key={message.id}
+							style={{
+								display: 'flex',
+								padding: 'var(--spacing)',
+								gap: 'var(--spacing)',
+								marginBottom: '10px',
+								border: '1px solid blue',
+								justifyContent: message.recipient === parseInt(userId) ? 'end' : 'start'
+							}}
+						>
+							<p>id: {message.id}</p>
+							<p>created: {message.created}</p>
+							<p>userId: {message.userId}</p>
+							<p>recipient: {message.recipient}</p>
+							<p>content: {message.content}</p>
+						</div> */}

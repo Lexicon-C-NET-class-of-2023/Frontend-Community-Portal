@@ -1,0 +1,10 @@
+.messagespage {
+	background: green;
+	/* height: var(--body-min-height); */
+	height: 100%;
+}
+
+.correspondants {
+	background: yellow;
+	height: 100%;
+}
