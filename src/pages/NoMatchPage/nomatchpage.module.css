@@ -1,5 +1,5 @@
 .nomatchpage {
 	display: grid;
 	place-items: center;
-	min-height: var(--main-height);
+	min-height: var(--full-height);
 }

@@ -1,7 +1,6 @@
 .messagespage {
+	position: relative;
 	background: green;
-	/* height: var(--body-min-height); */
-	height: 100%;
 }
 
 .correspondants {

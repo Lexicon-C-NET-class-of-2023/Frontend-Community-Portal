@@ -2,7 +2,9 @@
   --primary-color: #FF6F00;
   --secondary-color: #212121;
   --complimentary-color: yellow;
-  --main-height: 100dvh;
+  --full-height: 100dvh;
+  --navbar-height: 51px;
+  --main-height: calc(var(--full-height) - var(--navbar-height) - var(--spacing)*2);
   --spacing: 16px;
   --border-radius: 8px;
 }
@@ -28,11 +30,16 @@ body {
 }
 
 main {
+  position: relative;
   padding: var(--spacing);
   display: flex;
   flex-direction: column;
   gap: var(--spacing);
   min-height: var(--main-height);
+}
+
+main>div {
+  min-height: inherit; /* Gives all pages min height (100%) */
 }
 
 code {
