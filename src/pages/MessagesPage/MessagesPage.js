@@ -26,6 +26,7 @@ export default function MessagesPage() {
 			.then(res => {
 				if (res?.error) setError(res.error);
 				else setMessages(res)
+				// console.log(res);
 			})
 			.finally('reload')
 			.catch(err => console.log(err))
@@ -34,54 +35,39 @@ export default function MessagesPage() {
 
 	return (
 		<div className={styles.messagespage}>
-			<h2>Messages</h2>
-			<br />
 			{error && <Error error={error} />}
-			<br />
+
 
 			{messages &&
-				// <div style={{ display: 'flex' }}>
+				<div className={styles.correspondants}>
+					<h3>Correspondants</h3>
+					<br />
+					{messages.map((message) => {
+						const { id, recipient, recipientName, senderName } = message;
+						const userIsSender = parseInt(userId) === message.userId;
 
-					<div className={styles.correspondants}>
-						<h3>Correspondants</h3>
-						{messages.map((message) => {
-							return (
-								<NavLink
-									key={message.id}
-									to={`message/${message.id}`}
-									style={({ isActive }) => ({
-										color: isActive ? 'var(--link-active-color)' : 'var(--link-color)'
-									})}>
-									{/* //!TODO ADD NAME FOR USER WITH THIS ID*/}
-									<p>the user with id: {message.recipient === parseInt(userId) ? message.userId : message.recipient}</p>
-								</NavLink>
-							)
-						})}
-					{/* </div> */}
-
-					<Outlet />
-
+						return (
+							<NavLink
+								key={id}
+								to={`message/${userIsSender ? recipient : message.userId}`}
+								style={({ isActive }) => ({
+									color: isActive ? 'var(--link-active-color)' : 'var(--link-color)'
+								})}>
+								<p>{userIsSender ?
+									recipientName
+									:
+									senderName
+								}
+								</p>
+							</NavLink>
+						)
+					})}
 				</div>
 			}
+
+			<Outlet />
+
+
 		</div>
 	)
 }
-
-
-{/* <div
-							key={message.id}
-							style={{
-								display: 'flex',
-								padding: 'var(--spacing)',
-								gap: 'var(--spacing)',
-								marginBottom: '10px',
-								border: '1px solid blue',
-								justifyContent: message.recipient === parseInt(userId) ? 'end' : 'start'
-							}}
-						>
-							<p>id: {message.id}</p>
-							<p>created: {message.created}</p>
-							<p>userId: {message.userId}</p>
-							<p>recipient: {message.recipient}</p>
-							<p>content: {message.content}</p>
-						</div> */}

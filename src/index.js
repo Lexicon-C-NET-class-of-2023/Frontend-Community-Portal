@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         element: <Protected><MessagesPage /></Protected>,
         children: [
           {
-            path: "message/:messageId",
+            path: "message/:recipientId",
             element: <PrivateConversation />
           },
         ]
