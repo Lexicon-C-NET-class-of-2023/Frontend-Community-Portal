@@ -1,4 +1,6 @@
 import React from 'react'
 import styles from './button.module.css'
 
-export const Button = ({ type, value, children }) => <button type={type} className={styles.button}>{value || children}</button>
+export const Button = ({ type, value, children, disabled }) => (
+	<button type={type} disabled={disabled} className={styles.button}>{value || children}</button>
+)

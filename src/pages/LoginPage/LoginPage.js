@@ -4,7 +4,7 @@ import Input from '../../components/Input/Input'
 import styles from './loginpage.module.css'
 import { UserAuth } from '../../context/AuthContext'
 import { Error } from '../../components/Error/Error'
-import { Navigate } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
 
 export default function LoginPage() {
 	const [value, setValue] = useState({ email: '', password: '' });
@@ -27,31 +27,42 @@ export default function LoginPage() {
 		<div className={styles.loginpage}>
 			{auth?.error && <Error error={auth.error} />}
 
-			<Form
-				title='Login'
-				handleSubmit={onSubmit}
-				handleReset={onReset}
-			>
-				<Input
-					type='email'
-					label='Mail'
-					name='email'
-					placeholder='example@gmail.com'
-					value={value.email}
-					onChange={handleChange}
-					autoComplete={true}
-					minLength={13}
-				/>
+			<div style={{ display: 'flex', flexDirection: 'column' }}>
+				<Form
+					title='Logga in'
+					handleSubmit={onSubmit}
+					handleReset={onReset}
+				>
+					<Input
+						type='email'
+						label='Mail'
+						name='email'
+						placeholder='example@gmail.com'
+						value={value.email}
+						onChange={handleChange}
+						autoComplete={true}
+						minLength={13}
+					/>
 
-				<Input
-					type='password'
-					label='Lösenord'
-					name='password'
-					placeholder='*******'
-					value={value.password}
-					onChange={handleChange}
-				/>
-			</Form>
+					<Input
+						type='password'
+						label='Lösenord'
+						name='password'
+						placeholder='*******'
+						value={value.password}
+						onChange={handleChange}
+					/>
+				</Form>
+				<NavLink
+					to='../register'
+					style={{
+						color: '#485F73',
+						marginTop: '4px',
+						alignSelf: 'flex-end'
+					}}>
+					Registrera nytt konto
+				</NavLink>
+			</div>
 		</div>
 	)
 }

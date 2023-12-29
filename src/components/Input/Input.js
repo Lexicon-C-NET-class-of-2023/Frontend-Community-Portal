@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
+import show from '../../media/eye.svg'
+import hidden from '../../media/eye_hidden.svg'
 import styles from './input.module.css'
 
 export default function Input({
@@ -25,9 +27,10 @@ export default function Input({
 	useEffect(() => {
 		// sets customError on confirmPassword non match
 		if (passwordsMatch && !passwordsMatch()) {
-			confirmPasswordRef.current?.setCustomValidity('Passwords must match');
+			confirmPasswordRef.current?.setCustomValidity('Lösenorden måste matcha');
 		} else return
 	}, [value])
+
 
 	const toggleShowPassword = () => {
 		setShowPassword(!showPassword);
@@ -60,11 +63,11 @@ export default function Input({
 					onClick={toggleShowPassword}
 					className={styles.imagecontainer}
 				>
-					{/* {showPassword ?
+					{showPassword ?
 						<img src={hidden} width='25px' alt='password hidden' />
 						:
 						<img src={show} width='25px' alt='password show' />
-					} */}
+					}
 				</div>
 			}
 		</div>

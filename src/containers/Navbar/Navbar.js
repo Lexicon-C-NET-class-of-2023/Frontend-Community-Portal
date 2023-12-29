@@ -35,12 +35,12 @@ export default function Navbar() {
 					</li>
 					<li>
 						<NavLink
-							to='temp'
+							to='register'
 							style={({ isActive }) => ({
 								color: isActive ? 'white' : '#485F73',
 								textDecoration: 'none'
 							})}>
-							Temp
+							register
 						</NavLink>
 					</li>
 				</ul>

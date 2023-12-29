@@ -11,7 +11,7 @@ import Protected from './containers/Protected/Protected';
 import HomePage from './pages/HomePage/Homepage';
 import { NoMatchPage } from './pages/NoMatchPage/NoMatchPage';
 import MessagesPage from './pages/MessagesPage/MessagesPage';
-import Temp from './components/Temp/Temp';
+import RegisterPage from './pages/RegisterPage/RegisterPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import PrivateConversation from './components/PrivateConversation/PrivateConversation';
 
@@ -36,10 +36,6 @@ const router = createBrowserRouter([
         ]
       },
       {
-        path: "temp",
-        element: <Temp />
-      },
-      {
         path: "*",
         element: <NoMatchPage />
       },
@@ -48,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: "login",
     element: <LoginPage />
+  },
+  {
+    path: "register",
+    element: <RegisterPage />
   },
 ]);
 
