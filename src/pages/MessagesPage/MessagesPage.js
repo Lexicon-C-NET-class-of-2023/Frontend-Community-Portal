@@ -16,8 +16,10 @@ export default function MessagesPage() {
 	const [error, setError] = useState()
 	const { userId } = useParams();
 
+
 	useEffect(() => {
 		getUsersMessages()
+		return () => getUsersMessages() // <= cleanup function (happens when the component unmount)
 	}, []) // <= dependency array (only happen once if empty)
 
 
@@ -26,9 +28,7 @@ export default function MessagesPage() {
 			.then(res => {
 				if (res?.error) setError(res.error);
 				else setMessages(res)
-				// console.log(res);
 			})
-			.finally('reload')
 			.catch(err => console.log(err))
 	}
 
@@ -36,7 +36,6 @@ export default function MessagesPage() {
 	return (
 		<div className={styles.messagespage}>
 			{error && <Error error={error} />}
-
 
 			{messages &&
 				<div className={styles.correspondants}>

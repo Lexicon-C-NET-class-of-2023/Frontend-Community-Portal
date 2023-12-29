@@ -1,0 +1,14 @@
+.message {
+	width: fit-content;
+	background-color: white;
+	padding: var(--spacing) 25px;
+	border-radius: 20px;
+}
+
+.pointLeft {
+	border-bottom-right-radius: 3px;
+}
+
+.pointRight {
+	border-bottom-left-radius: 3px;
+}

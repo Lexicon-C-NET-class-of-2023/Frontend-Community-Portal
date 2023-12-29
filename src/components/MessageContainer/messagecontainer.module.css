@@ -1,0 +1,9 @@
+.messagecontainer {
+	display: flex;
+	flex-direction: column;
+	margin-block: var(--spacing);
+}
+
+.rightAligned {
+	align-items: end;
+}
