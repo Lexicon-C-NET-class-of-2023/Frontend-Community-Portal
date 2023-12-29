@@ -1,6 +1,6 @@
 import React from 'react'
-
+import styles from './messagetimestamp.module.css'
 
 export const MessageTimestamp = ({ children, userIsSender }) => (
-	<p style={{ color: '#333333' }}>{userIsSender ? 'sent:' : 'recieved:'} {children}</p>
+	<p className={styles.messagetimestamp}>{userIsSender ? 'skickat:' : 'mottaget:'} {children}</p>
 )

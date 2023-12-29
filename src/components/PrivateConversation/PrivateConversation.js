@@ -45,7 +45,7 @@ export default function PrivateConversation() {
 								key={message.id}
 								userIsSender={userIsSender}
 							>
-								<MessageTimestamp>
+								<MessageTimestamp userIsSender={userIsSender}>
 									{message.created}
 								</MessageTimestamp>
 								<Message userIsSender={userIsSender} >
