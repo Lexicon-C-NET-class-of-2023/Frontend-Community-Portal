@@ -3,23 +3,16 @@
 	grid-template-rows: 1fr;
 	grid-template-columns: auto 1fr;
 	grid-template-areas:
-		"correspondants messages"
 		"correspondants messages";
 	background: var(--primary-color);
 	border-radius: 8px;
 	border: 1px solid black;
 }
 
-
-
 .correspondants {
-	padding: var(--spacing);
-	/* background: blue; */
-	height: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: var(--spacing) 32px;
 	border-right: 1px solid black;
-}
-
-.messages {
-	padding: var(--spacing);
-	/* background: lightblue; */
 }

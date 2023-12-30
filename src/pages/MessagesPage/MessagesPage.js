@@ -5,12 +5,6 @@ import { useParams, NavLink, Outlet } from 'react-router-dom';
 import styles from './messagespage.module.css'
 
 
-//TODO get all users the current user is chatting with
-//TODO present their name as links with route to conversation
-//TODO in new link make it possible to answere to the other user
-//TODO service that handles the timestamp
-//TODO a function that sends a request and get only messages between user and recipient  
-
 export default function MessagesPage() {
 	const [messages, setMessages] = useState() /* <= state (values ment to update the component when changed)*/
 	const [error, setError] = useState()
@@ -65,7 +59,6 @@ export default function MessagesPage() {
 			}
 
 			<Outlet />
-
 
 		</div>
 	)
