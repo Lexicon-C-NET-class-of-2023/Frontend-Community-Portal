@@ -4,12 +4,15 @@ import Input from '../../components/Input/Input'
 import { Fetch } from '../../services/fetch'
 import { Error } from '../../components/Error/Error'
 import { pattern } from '../../services/pattern'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styles from './registerpage.module.css'
+
+const successMessage = 'Din registrering gick bra och du routas strax till login'
 
 
 export default function RegisterPage() {
 	const [error, setError] = useState()
+	const [message, setMessage] = useState('')
 	const [value, setValue] = useState({
 		firstName: '',
 		lastName: '',
@@ -17,6 +20,7 @@ export default function RegisterPage() {
 		password: '',
 		confirmPassword: ''
 	});
+	const navigate = useNavigate();
 
 
 	const passwordsMatch = () => value.password === value.confirmPassword;
@@ -24,7 +28,6 @@ export default function RegisterPage() {
 
 	const handleChange = ({ target }) => {
 		target.setCustomValidity('');
-
 		setValue({ ...value, [target.name]: target.value });
 	}
 
@@ -32,33 +35,28 @@ export default function RegisterPage() {
 		// console.log(target.name, target.validity);
 	}
 
-
 	const registerUser = () => {
 		Fetch('users', 'RegisterPage', 'POST', value)
 			.then(res => {
 				if (res?.error) setError(res.error);
 				else {
-					// setUser(res)
-					console.log(res);
-					sessionStorage.setItem("user", `${res.id}`);
+					setMessage(successMessage)
+					setTimeout(() => { navigate('../login') }, 3000)
 				}
 			})
 			.catch(err => console.log(err))
 	}
 
-
-
-
 	const onSubmit = (e) => {
 		e.preventDefault();
-		// console.log(passwordsMatch());
-		console.log(value);
+		registerUser();
 	}
 
 
 	return (
 		<div className={styles.registerpage}>
 			{error && <Error error={error} />}
+			{message && <p>{message}</p>}
 
 			<div style={{ display: 'flex', flexDirection: 'column' }}>
 				<Form
