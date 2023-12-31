@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import styles from './privateconversation.module.css'
 import { useParams } from 'react-router-dom'
 import { Fetch } from '../../services/fetch'
-import Message from '../Message/Message'
-import { MessageContainer } from '../MessageContainer/MessageContainer'
-import { MessageTimestamp } from '../MessageTimestamp/MessageTimestamp'
-import { Error } from '../Error/Error'
+import Message from '../../components/Message/Message'
+import { MessageContainer } from '../../components/MessageContainer/MessageContainer'
+import { MessageTimestamp } from '../../components/MessageTimestamp/MessageTimestamp'
+import { Error } from '../../components/Error/Error'
 
 
 export default function PrivateConversation() {

@@ -33,16 +33,6 @@ export default function Navbar() {
 							Messages
 						</NavLink>
 					</li>
-					<li>
-						<NavLink
-							to='register'
-							style={({ isActive }) => ({
-								color: isActive ? 'white' : '#485F73',
-								textDecoration: 'none'
-							})}>
-							register
-						</NavLink>
-					</li>
 				</ul>
 			</nav>
 			<p

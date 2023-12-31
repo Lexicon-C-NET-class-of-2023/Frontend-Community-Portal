@@ -13,7 +13,7 @@ import { NoMatchPage } from './pages/NoMatchPage/NoMatchPage';
 import MessagesPage from './pages/MessagesPage/MessagesPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import LoginPage from './pages/LoginPage/LoginPage';
-import PrivateConversation from './components/PrivateConversation/PrivateConversation';
+import PrivateConversation from './containers/PrivateConversation/PrivateConversation';
 
 
 const router = createBrowserRouter([
