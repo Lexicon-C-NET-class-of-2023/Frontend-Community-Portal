@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Fetch } from '../../services/fetch';
-import { Error } from '../../components/Error/Error';
+import { Feedback } from '../../components/Feedback/Feedback';
 import { useParams, NavLink, Outlet } from 'react-router-dom';
 import styles from './messagespage.module.css'
 
@@ -35,7 +35,7 @@ export default function MessagesPage() {
 
 	return (
 		<div className={styles.messagespage}>
-			{error && <Error error={error} />}
+			{error && <Feedback error={error} />}
 
 
 

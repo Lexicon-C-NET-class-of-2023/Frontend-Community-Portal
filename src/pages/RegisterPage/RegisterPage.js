@@ -2,17 +2,16 @@ import React, { useState } from 'react'
 import Form from '../../components/Form/Form'
 import Input from '../../components/Input/Input'
 import { Fetch } from '../../services/fetch'
-import { Error } from '../../components/Error/Error'
+import { Feedback } from '../../components/Feedback/Feedback'
 import { pattern } from '../../services/pattern'
 import { NavLink, useNavigate } from 'react-router-dom';
+import { feedback } from '../../services/feedback'
 import styles from './registerpage.module.css'
-
-const successMessage = 'Din registrering gick bra och du routas strax till login'
 
 
 export default function RegisterPage() {
 	const [error, setError] = useState()
-	const [message, setMessage] = useState('')
+	const [fb, setFb] = useState()
 	const [value, setValue] = useState({
 		firstName: '',
 		lastName: '',
@@ -40,7 +39,7 @@ export default function RegisterPage() {
 			.then(res => {
 				if (res?.error) setError(res.error);
 				else {
-					setMessage(successMessage)
+					setFb(feedback.register)
 					setTimeout(() => { navigate('../login') }, 3000)
 				}
 			})
@@ -55,8 +54,8 @@ export default function RegisterPage() {
 
 	return (
 		<div className={styles.registerpage}>
-			{error && <Error error={error} />}
-			{message && <p>{message}</p>}
+			{error && <Feedback error={error} />}
+			{fb && <Feedback feedback={fb} />}
 
 			<div style={{ display: 'flex', flexDirection: 'column' }}>
 				<Form

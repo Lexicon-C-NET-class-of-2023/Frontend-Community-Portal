@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react' /* <= imports, (React & react hooks) */
-import { Error } from '../../components/Error/Error'
+import { Feedback } from '../../components/Feedback/Feedback'
 import { Fetch } from '../../services/fetch'
 import { UserAuth } from '../../context/AuthContext'
 import styles from './homepage.module.css'
@@ -31,7 +31,7 @@ export default function HomePage() {
 		<div className={styles.homepage}>
 			<h1>Welcome {`${user?.firstName} ${user?.lastName}`}</h1>
 
-			{error && <Error error={error} />} {/* <= conditional rendering (only shows if "error" is defined) */}
+			{error && <Feedback error={error} />} {/* <= conditional rendering (only shows if "error" is defined) */}
 
 			{users &&
 				<div>

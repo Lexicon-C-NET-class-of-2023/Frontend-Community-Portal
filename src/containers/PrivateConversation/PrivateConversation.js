@@ -5,7 +5,7 @@ import { Fetch } from '../../services/fetch'
 import Message from '../../components/Message/Message'
 import { MessageContainer } from '../../components/MessageContainer/MessageContainer'
 import { MessageTimestamp } from '../../components/MessageTimestamp/MessageTimestamp'
-import { Error } from '../../components/Error/Error'
+import { Feedback } from '../../components/Feedback/Feedback'
 
 
 export default function PrivateConversation() {
@@ -15,26 +15,20 @@ export default function PrivateConversation() {
 
 
 	useEffect(() => {
-		getUsersMessages()
-		return () => getUsersMessages()
-	}, [recipientId])
-
-
-	const getUsersMessages = () => {
 		Fetch(`messages/${userId}/message/${recipientId}`)
 			.then(res => {
 				if (res?.error) setError(res.error);
 				else setMessages(res)
 			})
 			.catch(err => console.log(err))
-	}
+	}, [userId, recipientId])
 
 
 	return (
 		<div className={styles.privateconversation}>
 			<h3>Messages</h3>
 			<br />
-			{error && <Error error={error} />}
+			{error && <Feedback error={error} />}
 			{messages &&
 				<div className={styles.correspondants}>
 					{messages.map((message) => {

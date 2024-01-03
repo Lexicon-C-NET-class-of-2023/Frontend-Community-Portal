@@ -1,0 +1,22 @@
+.feedback {
+	position: absolute;
+	right: 0;
+	top: var(--navbar-height);
+	width: fit-content;
+	padding: var(--spacing);
+	background: rgb(33, 33, 33, .97);
+	color: white;
+	border: 4px ridge transparent;
+	border-right: 0;
+	border-top-left-radius: var(--border-radius);
+	border-bottom-left-radius: var(--border-radius);
+	z-index: 1;
+}
+
+.ok {
+	border-color: green;
+}
+
+.error {
+	border-color: red;
+}
