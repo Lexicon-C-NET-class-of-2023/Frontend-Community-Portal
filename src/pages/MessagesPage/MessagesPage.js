@@ -7,37 +7,23 @@ import styles from './messagespage.module.css'
 
 export default function MessagesPage() {
 	const [messages, setMessages] = useState() /* <= state (values ment to update the component when changed)*/
-	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState()
 	const { userId } = useParams();
 
 
 	useEffect(() => {
-		getUsersMessages()
-		return () => getUsersMessages() // <= cleanup function (happens when the component unmount)
-	}, []) // <= dependency array (only happen once if empty)
-
-	useEffect(() => {
-		console.log(messages);
-	}, [messages])
-
-
-	const getUsersMessages = () => {	//Where current user is either "userId" or "recipient"
 		Fetch(`messages?userId=${userId}`)
 			.then(res => {
 				if (res?.error) setError(res.error);
 				else setMessages(res)
 			})
-			.finally(setLoading(false))
-			.catch(err => console.log(err))
-	}
+			.catch(err => console.log(err)) // <= cleanup function (happens when the component unmount)
+	}, []) // <= dependency array (only happen once if empty)
 
 
 	return (
 		<div className={styles.messagespage}>
 			{error && <Feedback error={error} />}
-
-
 
 			{messages &&
 				<div className={styles.correspondants}>

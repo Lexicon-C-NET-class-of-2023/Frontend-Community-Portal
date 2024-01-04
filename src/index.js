@@ -26,6 +26,10 @@ const router = createBrowserRouter([
         element: <Protected><HomePage /></Protected>
       },
       {
+        path: "messages", /* Just to force you back to login and prevent NoMatchPage */
+        element: <Protected><MessagesPage /></Protected>
+      },
+      {
         path: "messages/:userId",
         element: <Protected><MessagesPage /></Protected>,
         children: [

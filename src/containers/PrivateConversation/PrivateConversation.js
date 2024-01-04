@@ -6,22 +6,38 @@ import Message from '../../components/Message/Message'
 import { MessageContainer } from '../../components/MessageContainer/MessageContainer'
 import { MessageTimestamp } from '../../components/MessageTimestamp/MessageTimestamp'
 import { Feedback } from '../../components/Feedback/Feedback'
+import MessageCreate from '../../components/MessageCreate/MessageCreate'
+import { handleChange } from '../../services/handleChange'
 
 
 export default function PrivateConversation() {
+	const { userId, recipientId } = useParams();
 	const [messages, setMessages] = useState()
 	const [error, setError] = useState()
-	const { userId, recipientId } = useParams();
+	const [reloadConversation, setReloadConversation] = useState({})
+	const [value, setValue] = useState({ recipient: null, content: '' })
 
 
 	useEffect(() => {
+		setValue({ ...value, recipient: recipientId })
+
 		Fetch(`messages/${userId}/message/${recipientId}`)
 			.then(res => {
 				if (res?.error) setError(res.error);
 				else setMessages(res)
 			})
 			.catch(err => console.log(err))
-	}, [userId, recipientId])
+	}, [userId, recipientId, reloadConversation])
+
+
+	const sendMessage = () => {
+		Fetch(`messages/${userId}`, 'PrivateConversation', 'POST', value)
+			.then(res => {
+				if (res?.error) setError(res.error);
+				else setReloadConversation({})
+			})
+			.catch(err => console.log(err))
+	}
 
 
 	return (
@@ -52,6 +68,13 @@ export default function PrivateConversation() {
 					})}
 				</div>
 			}
+
+			<MessageCreate
+				value={value}
+				handleChange={(e) => handleChange(e, value, setValue)}
+				onClick={sendMessage}
+			/>
+
 		</div >
 	)
 }
