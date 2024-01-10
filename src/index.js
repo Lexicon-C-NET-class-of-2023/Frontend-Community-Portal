@@ -14,7 +14,7 @@ import MessagesPage from './pages/MessagesPage/MessagesPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import PrivateConversation from './containers/PrivateConversation/PrivateConversation';
-
+import ForumPage from './pages/ForumPage/ForumPage';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +38,10 @@ const router = createBrowserRouter([
             element: <PrivateConversation />
           },
         ]
+      },
+      {
+        path: "forums/:userId", /* Just to force you back to login and prevent NoMatchPage */
+        element: <Protected><ForumPage /></Protected>
       },
       {
         path: "*",

@@ -1,3 +1,6 @@
 .privateconversation {
 	padding: var(--spacing);
+	background: red;
+	height: 80vh;
+	overflow-y: scroll;
 }

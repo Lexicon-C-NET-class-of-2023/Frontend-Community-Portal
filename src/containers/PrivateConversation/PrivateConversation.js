@@ -69,11 +69,13 @@ export default function PrivateConversation() {
 				</div>
 			}
 
-			<MessageCreate
-				value={value}
-				handleChange={(e) => handleChange(e, value, setValue)}
-				onClick={sendMessage}
-			/>
+			<div style={{position: 'absolute', top: '90%'}}>
+				<MessageCreate
+					value={value}
+					handleChange={(e) => handleChange(e, value, setValue)}
+					onClick={sendMessage}
+				/>
+			</div>
 
 		</div >
 	)
