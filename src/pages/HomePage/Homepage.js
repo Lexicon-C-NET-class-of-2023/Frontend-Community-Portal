@@ -3,6 +3,7 @@ import { Feedback } from '../../components/Feedback/Feedback'
 import { Fetch } from '../../services/fetch'
 import { UserAuth } from '../../context/AuthContext'
 import styles from './homepage.module.css'
+import { formatHelper } from '../../services/formatHelper'
 
 
 export default function HomePage() {
@@ -16,7 +17,7 @@ export default function HomePage() {
 	}, []) // <= dependency array (only happen once if empty)
 
 	// console.log(user);
-	
+
 	/* useEffect(() => {
 		console.log(news)
 	}, [news]) */
@@ -40,7 +41,7 @@ export default function HomePage() {
 
 			{error && <Feedback error={error} />} {/* <= conditional rendering (only shows if "error" is defined) */}
 
-			
+
 
 			{news &&
 				<div>
@@ -53,7 +54,7 @@ export default function HomePage() {
 									key={i} /* <= React requires a unique "key" property on the first child of a map() */
 									className={styles.user}
 								>
-									<p>publicerat: {created}</p> {/* <= template literal (handles variables as string)*/}
+									<p>publicerat: {formatHelper.timestamp(created)}</p> {/* <= template literal (handles variables as string)*/}
 									<h3>{title}</h3>
 									<p>{content}</p>
 

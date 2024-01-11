@@ -1,68 +1,69 @@
 import React, { useEffect, useState } from 'react'
 import { Fetch } from '../../services/fetch';
-
-
+import ForumCreate from '../../components/ForumCreate/ForumCreate';
+import { useParams } from 'react-router-dom'
+import ForumPost from '../../components/ForumPost/ForumPost';
 
 
 export default function ForumPage() {
 	const [error, setError] = useState();
 	const [forums, setForums] = useState();
+	const [value, setValue] = useState({ content: '' });
+	const params = useParams()
 
 
-	useEffect(() => {
+	useEffect(() => { getForumPosts() }, [])
+
+
+	const getForumPosts = () => {
 		Fetch('forums')
 			.then(res => {
 				if (res?.error) setError(res.error);
 				else {
-					setForums(res)
 					// console.log(res)
+					setForums(res)
 				}
 			})
 			.finally('reload')
 			.catch(err => console.log(err))
-	}, [])
+	}
+
+
+	const postForumAnswere = (forumId) => {
+		if (!value.content) return
+
+		Fetch(`forums/${forumId}/posts/${params.userId}`, 'ForumPage', 'POST', value)
+			.then(res => {
+				if (res?.error) setError(res.error);
+				else {
+					console.log(res);
+					// setFb(feedback.register)
+					getForumPosts();
+				}
+			})
+			.catch(err => console.log(err))
+	}
+
+	const handleAnsweres = ({ target }) => setValue({ ...value, [target.name]: target.value })
+
 
 	return (
 		<div>
-			<p>ForumPage</p>
-			<br /><br />
-			{forums &&
-				forums.map((forum) => {
-					const { id, title, forumPosts } = forum;
-					const original = forumPosts[0];
+			<ForumCreate />
 
-					return (
-						<div
-							key={id}
-							style={{ background: 'green', marginBottom: 10 }}
-						>
-							<h4>{title}</h4>
+			<br />
 
-							{forumPosts
-								.sort((a, b) => {
-									console.log('a', a.created, 'b', b.created);
-
-									return b.created - a.created
-								})
-								.map((post) => {
-									// console.log(post);
-									return (
-										<div
-											key={post.id}
-											style={{ background: 'red', marginBottom: 10 }}
-										>
-											<p>{post.id}</p>
-											<p>{post.created}</p>
-											<p>{post.content}</p>
-										</div>
-									)
-								})}
-
-							<button>svara</button>
-						</div>
-					)
-				})
-			}
+			{forums && forums.map(({ id, title, forumPosts }) => (
+				<ForumPost
+					key={id}
+					id={id}
+					title={title}
+					value={value}
+					forumPosts={forumPosts}
+					handleAnsweres={handleAnsweres}
+					postForumAnswere={postForumAnswere}
+				/>
+			))}
 		</div>
 	)
 }

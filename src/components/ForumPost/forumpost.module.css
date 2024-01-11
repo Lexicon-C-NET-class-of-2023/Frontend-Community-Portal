@@ -1,0 +1,8 @@
+.forumpost {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	background: var(--primary-color);
+	padding: 16px;
+	margin-bottom: 32px;
+}

@@ -8,6 +8,7 @@ import { MessageTimestamp } from '../../components/MessageTimestamp/MessageTimes
 import { Feedback } from '../../components/Feedback/Feedback'
 import MessageCreate from '../../components/MessageCreate/MessageCreate'
 import { handleChange } from '../../services/handleChange'
+import { formatHelper } from '../../services/formatHelper'
 
 
 export default function PrivateConversation() {
@@ -55,9 +56,9 @@ export default function PrivateConversation() {
 								key={message.id}
 								userIsSender={userIsSender}
 							>
-								<MessageTimestamp userIsSender={userIsSender}>
-									{message.created}
-								</MessageTimestamp>
+								{/* <MessageTimestamp userIsSender={userIsSender}> */}
+								{formatHelper.timestamp(message.created)}
+								{/* </MessageTimestamp> */}
 								<Message userIsSender={userIsSender} >
 									<p>sender: {message.userId}</p>
 									<p>recipient: {message.recipient}</p>
@@ -69,7 +70,7 @@ export default function PrivateConversation() {
 				</div>
 			}
 
-			<div style={{position: 'absolute', top: '90%'}}>
+			<div style={{ position: 'absolute', top: '90%' }}>
 				<MessageCreate
 					value={value}
 					handleChange={(e) => handleChange(e, value, setValue)}

@@ -38,7 +38,7 @@ export default function Input({
 
 
 	return (
-		<div className={styles.input}>
+		<div className={`${styles.input} ${!label && styles.nogap}`}>
 			<label>{label}</label>
 			<input
 				required={required}

@@ -22,3 +22,7 @@
 	place-items: center;
 	height: 100%;
 }
+
+.nogap {
+	gap: unset;
+}

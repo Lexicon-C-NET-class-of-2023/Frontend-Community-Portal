@@ -1,0 +1,10 @@
+.forumcomment {}
+
+.timestamp {
+	text-align: end;
+}
+
+.content {
+	background: #333;
+	padding: 16px;
+}
