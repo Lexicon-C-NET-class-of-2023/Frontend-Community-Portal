@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import ForumComment from "../ForumComment/ForumComment";
 import Input from "../Input/Input";
+import { formatHelper } from '../../services/formatHelper';
 import styles from './forumpost.module.css';
+import { ClickableText } from '../ClickableText/ClickableText';
 
 
 const ForumPost = ({
@@ -24,12 +26,19 @@ const ForumPost = ({
 
 	return (
 		<div className={styles.forumpost}>
-			<h4>{title}</h4>
+			<div>
+				<h4>{title} </h4>
+				<p>{formatHelper.timestamp(forumPosts[0].created)}</p>
+			</div>
 
-			<button onClick={toggleShowComments}>Visa kommentarer</button>
+			<ClickableText
+				title={showComments ? 'Dölj kommentarer' : 'Visa kommentarer'}
+				onClick={toggleShowComments}
+			/>
 
 			{!showComments ?
-				<p>{forumPosts[0].content}</p>
+
+				<p>{forumPosts[0].content} </p>
 
 				:
 
