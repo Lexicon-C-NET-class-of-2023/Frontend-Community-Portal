@@ -1,0 +1,9 @@
+.clickabletext {
+	width: fit-content;
+	padding: 8px;
+	text-decoration: underline;
+}
+
+.clickabletext:hover {
+	cursor: pointer;
+}

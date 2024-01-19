@@ -6,12 +6,13 @@ import { useParams } from 'react-router-dom'
 import { Fetch } from '../../services/fetch'
 import { feedback } from '../../services/feedback'
 import { Feedback } from '../Feedback/Feedback'
+import Textarea from '../Textarea/Textarea'
 
 
 
-// TODO Not able to reset textarea
+
 // TODO Feedback
-export default function ForumCreate() {
+export default function ForumCreate({ toggleForumCreate }) {
 	const [error, setError] = useState();
 	const [fb, setFb] = useState();
 	const [value, setValue] = useState({ title: '', posts: [{ content: '' }] });
@@ -19,7 +20,6 @@ export default function ForumCreate() {
 
 
 	const temp = ({ target }) => handleChange({ target }, value, setValue)
-	const resetForm = () => setValue({ title: '', posts: [{ content: '' }] })
 
 	const createForumPost = (e) => {
 		e.preventDefault();
@@ -44,9 +44,11 @@ export default function ForumCreate() {
 		<div>
 			<Feedback feedback={fb} error={error} />
 			<Form
-				title='Skriv ett foruminlägg'
+				// title='Ny forumtråd'
 				handleSubmit={createForumPost}
-				handleReset={resetForm}
+				handleReset={toggleForumCreate}
+				fullWidth
+				gutterBottom
 			>
 				<Input
 					type='text'
@@ -54,16 +56,17 @@ export default function ForumCreate() {
 					name='title'
 					placeholder='Ange titel'
 					value={value.title}
-					onChange={temp}
+					onChange={handleChange}
 					minLength={4}
+					maxLength='10px'
+					block
 				/>
 
-				<textarea
+				<Textarea
 					name='content'
-					value={value.content}
-					onChange={temp}
-				>
-				</textarea>
+					value={value.posts[0].content}
+					onChange={handleChange}
+				/>
 			</Form>
 		</div>
 	)

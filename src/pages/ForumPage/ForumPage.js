@@ -3,17 +3,22 @@ import { Fetch } from '../../services/fetch';
 import ForumCreate from '../../components/ForumCreate/ForumCreate';
 import { useParams } from 'react-router-dom'
 import ForumPost from '../../components/ForumPost/ForumPost';
+import { ClickableText } from '../../components/ClickableText/ClickableText';
 
 
 export default function ForumPage() {
 	const [error, setError] = useState();
 	const [forums, setForums] = useState();
+	const [showForumCreate, setShowForumCreate] = useState(false);
 	const [value, setValue] = useState({ content: '' });
 	const params = useParams()
 
 
 	useEffect(() => { getForumPosts() }, [])
 
+
+	const handleReplies = ({ target }) => setValue({ ...value, [target.name]: target.value })
+	const toggleForumCreate = () => setShowForumCreate(!showForumCreate)
 
 	const getForumPosts = () => {
 		Fetch('forums')
@@ -28,8 +33,7 @@ export default function ForumPage() {
 			.catch(err => console.log(err))
 	}
 
-
-	const postForumAnswere = (forumId) => {
+	const postForumReplies = (forumId) => {
 		if (!value.content) return
 
 		Fetch(`forums/${forumId}/posts/${params.userId}`, 'ForumPage', 'POST', value)
@@ -44,12 +48,19 @@ export default function ForumPage() {
 			.catch(err => console.log(err))
 	}
 
-	const handleAnsweres = ({ target }) => setValue({ ...value, [target.name]: target.value })
+
 
 
 	return (
 		<div>
-			<ForumCreate />
+			{showForumCreate ?
+				<ForumCreate toggleForumCreate={toggleForumCreate} />
+				:
+				<ClickableText
+					title='Starta en ny forumtråd'
+					onClick={toggleForumCreate}
+				/>
+			}
 
 			<br />
 
@@ -60,8 +71,8 @@ export default function ForumPage() {
 					title={title}
 					value={value}
 					forumPosts={forumPosts}
-					handleAnsweres={handleAnsweres}
-					postForumAnswere={postForumAnswere}
+					handleReplies={handleReplies}
+					postForumReplies={postForumReplies}
 				/>
 			))}
 		</div>

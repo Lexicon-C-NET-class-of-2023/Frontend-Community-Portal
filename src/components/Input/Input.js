@@ -19,7 +19,8 @@ export default function Input({
 	pattern,
 	autoComplete,
 	passwordsMatch,
-	inputfieldWidth
+	inputfieldWidth,
+	block
 }) {
 	const [showPassword, setShowPassword] = useState(false);
 	const confirmPasswordRef = useRef();
@@ -38,7 +39,7 @@ export default function Input({
 
 
 	return (
-		<div className={`${styles.input} ${!label && styles.nogap}`}>
+		<div className={`${styles.input} ${!label && styles.nogap} ${block && styles.block}`}>
 			<label>{label}</label>
 			<input
 				required={required}

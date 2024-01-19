@@ -11,3 +11,11 @@
 .form h2 {
 	text-align: center;
 }
+
+.fullWidth {
+	width: 100%;
+}
+
+.gutterBottom {
+	margin-bottom: calc(var(--spacing)*2);
+}

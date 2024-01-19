@@ -5,10 +5,10 @@ import { ButtonContainer } from '../ButtonContainer/ButtonContainer';
 import { Button } from '../Button/Button';
 
 
-export default function Form({ title, action, method, encType, children, handleSubmit, handleReset, disabled }) {
+export default function Form({ title, action, method, encType, children, handleSubmit, handleReset, disabled, fullWidth, gutterBottom }) {
 	return (
 		<form
-			className={styles.form}
+			className={`${styles.form} ${fullWidth && styles.fullWidth} ${gutterBottom && styles.gutterBottom}`} 
 			action={action}
 			method={method}
 			encType={encType}

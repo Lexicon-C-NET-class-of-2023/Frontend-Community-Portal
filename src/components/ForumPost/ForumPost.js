@@ -5,8 +5,8 @@ import styles from './forumpost.module.css';
 
 
 const ForumPost = ({
-	postForumAnswere,
-	handleAnsweres,
+	postForumReplies,
+	handleReplies,
 	forumPosts,
 	title,
 	value,
@@ -54,12 +54,12 @@ const ForumPost = ({
 								placeholder="enter"
 								name="content"
 								value={value.content}
-								onChange={handleAnsweres}
+								onChange={handleReplies}
 								inputfieldWidth="100%"
 							/>
 
 							<button
-								onClick={() => postForumAnswere(id)}
+								onClick={() => postForumReplies(id)}
 								style={{ width: 'fit-content' }}
 							>
 								Skicka
