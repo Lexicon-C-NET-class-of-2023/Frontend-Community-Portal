@@ -11,7 +11,7 @@ export const Fetch = async (
 	body,
 	header = { 'Content-Type': 'application/json' }
 ) => {
-	const url = "http://127.0.0.1:5263/"
+	const url = "https://www.anderssöderberg.se/backend/community-portal/"
 	const controller = new AbortController();
 	const signal = controller.signal;
 
