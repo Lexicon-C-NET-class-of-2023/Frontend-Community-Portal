@@ -57,7 +57,7 @@ const router = createBrowserRouter([
     path: "register",
     element: <RegisterPage />
   },
-]);
+], { basename: "/community-portal" });
 
 
 createRoot(document.getElementById('root')).render(
